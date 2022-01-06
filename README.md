@@ -27,7 +27,7 @@ Below, you'll find specific learning objectives for each tool.
 ## Running the tests
 
 - Make sure chromedriver is installed
-- You might also need geckodriver
+  - [See here for more instructions on installing chromedriver](./docs/install-chromedriver.md)
 - Start the server in a terminal session `mvn spring-boot:run`
 - Start a new terminal session, navigate to the Acebook directory and then do `mvn test` to run both feature tests and unit tests
 
