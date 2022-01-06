@@ -1,30 +1,29 @@
 import com.github.javafaker.Faker;
 import com.makersacademy.acebook.Application;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest(classes = Application.class)
 public class SignUpTest {
 
     WebDriver driver;
     Faker faker;
 
-    @Before
+    @BeforeEach
     public void setup() {
         driver = new ChromeDriver();
         faker = new Faker();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         driver.close();
     }
@@ -36,6 +35,6 @@ public class SignUpTest {
         driver.findElement(By.id("password")).sendKeys("password");
         driver.findElement(By.id("submit")).click();
         String title = driver.getTitle();
-        Assert.assertEquals("Please sign in", title);
+        assertThat(title).isEqualTo("Please sign in");
     }
 }

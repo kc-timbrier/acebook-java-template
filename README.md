@@ -8,7 +8,8 @@ The application uses:
   - `flyway` to manage `postgres` db migrations
   - `selenium` for feature testing
   - `faker` to generate fake names for testing
-  - `junit4` for unit testing
+  - `junit5` for unit testing
+  - `assertj` for assertions in tests
   - `spring-security` for authentication and user management
   
 Below, you'll find specific learning objectives for each tool.
