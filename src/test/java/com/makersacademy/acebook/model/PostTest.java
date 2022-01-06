@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PostTest {
 
-	private Post post = new Post("hello");
+	private final Post post = new Post("hello");
 
 	@Test
 	public void postHasContent() {
