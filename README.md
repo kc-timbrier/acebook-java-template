@@ -10,6 +10,7 @@ The application uses:
   - `faker` to generate fake names for testing
   - `junit5` for unit testing
   - `assertj` for assertions in tests
+  - `mockito` for mocking in unit tests
   - `spring-security` for authentication and user management
   
 Below, you'll find specific learning objectives for each tool.
@@ -75,9 +76,15 @@ complexity, in Java. It's OK if you need to pause here with Acebook and learn ho
 - [ ] I can explain what Faker does
 - [ ] I can explain why it's useful
 
-### JUnit4
+### JUnit5
 - [ ] I can explain the code in `PostTest.java`
 - [ ] I could add more test cases to `PostTest.java`
+
+### Mockito
+- [ ] I can explain what the call to `verify` does in the `savesProvidedPost` method in `PostsControllerTest.java`
+- [ ] I can explain what the call to `when` does in the `populatesPostsObjectFromThePostRepository` method in `PostsControllerTest.java`
+- [ ] I can explain why an `ArgumentCaptor` is used in the `savesAuthorityWithUsersNameAndCorrectRole` method in `UsersControllerTest.java`
+- [ ] I can explain why mocking can be useful in tests
 
 ### The repository pattern
 - [ ] I can explain the repository pattern
