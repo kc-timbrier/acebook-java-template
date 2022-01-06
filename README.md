@@ -87,8 +87,17 @@ complexity, in Java. It's OK if you need to pause here with Acebook and learn ho
 ### Spring Security
 - [ ] I can explain how this app is secured
 
-## Resources
+## Possible extensions
 
+Here are a few examples of new features which could be added to Acebook. Feel free to implement as many as you wish, or if you have your own ideas try them out.
+
+- [ ] Add a logout button to the /posts page
+- [ ] Include username on posts
+- [ ] Include timestamp on posts
+- [ ] Allow a user to add friends, and only show posts from a users friends
+- [ ] Allow a user to delete posts
+
+## Resources
 
 * [Some great videos on Spring Security](https://www.youtube.com/watch?v=sm-8qfMWEV8&list=PLqq-6Pq4lTTYTEooakHchTGglSvkZAjnE).  Don't watch them all, but do watch the first couple if you want an overview.
 
