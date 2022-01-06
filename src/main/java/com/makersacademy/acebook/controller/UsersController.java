@@ -21,13 +21,13 @@ public class UsersController {
     AuthoritiesRepository authoritiesRepository;
 
     @GetMapping("/users/new")
-    public String signup(Model model) {
+    public String getRegisterUserPage(Model model) {
         model.addAttribute("user", new User());
         return "users/new";
     }
 
     @PostMapping("/users")
-    public RedirectView signup(@ModelAttribute User user) {
+    public RedirectView register(@ModelAttribute User user) {
         userRepository.save(user);
         Authority authority = new Authority(user.getUsername(), "ROLE_USER");
         authoritiesRepository.save(authority);
