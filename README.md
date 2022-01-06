@@ -18,7 +18,8 @@ Below, you'll find specific learning objectives for each tool.
 - Fork and clone this repository to your machine
 - Open the codebase in an IDE like InteliJ or VSCode
 - Create a new Postgres database called `acebook_springboot_development`
-- Install Maven `brew install maven`
+  - [See here for more instructions on creating a Postgres database](./docs/create-postgres-database.md)
+- Make sure you have Maven installed `brew install maven`
 - Build the app and start the server, using the Maven command `mvn spring-boot:run`
 > The database migrations will run automatically at this point
 - Visit `http://localhost:8080/users/new` to sign up
