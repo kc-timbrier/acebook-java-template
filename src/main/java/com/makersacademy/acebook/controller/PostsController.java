@@ -15,7 +15,7 @@ public class PostsController {
     PostRepository repository;
 
     @GetMapping("/posts")
-    public String index(Model model) {
+    public String getPostsPage(Model model) {
         Iterable<Post> posts = repository.findAll();
         model.addAttribute("posts", posts);
         model.addAttribute("post", new Post());
