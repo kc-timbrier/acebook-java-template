@@ -34,4 +34,10 @@ public class PostsController {
         postRepository.save(post);
         return new RedirectView("/feed");
     }
+
+    @DeleteMapping("/posts/{id}")
+    public RedirectView delete(@PathVariable Long id) {
+        postRepository.deleteById(id);
+        return new RedirectView("/feed");
+    }
 }

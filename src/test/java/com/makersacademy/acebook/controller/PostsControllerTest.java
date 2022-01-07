@@ -85,4 +85,22 @@ class PostsControllerTest {
         }
     }
 
+    @Nested
+    class DeletePostTest {
+
+        @Test
+        public void deletesPostFromTheRepository() {
+            testSubject.delete(123L);
+
+            verify(postRepository).deleteById(123L);
+        }
+
+        @Test
+        public void redirectsToFeedPageOnSuccess() {
+            RedirectView result = testSubject.delete(321L);
+
+            assertThat(result.getUrl()).isEqualTo("/feed");
+        }
+    }
+
 }

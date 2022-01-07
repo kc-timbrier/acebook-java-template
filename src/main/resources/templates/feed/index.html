@@ -33,7 +33,17 @@
 
 
     <ul th:each="post: ${posts}">
-        <li th:text="${post.postTime + ' - ' + post.user.username + ' - ' + post.content}" />
+        <li>
+            <span th:text="${post.postTime}"></span>
+            <span> - </span>
+            <span th:text="${post.user.username}"></span>
+            <span> - </span>
+            <span th:text="${post.content}"></span>
+            <span> - </span>
+            <form style="display:inline;" action="#" th:action="@{/posts/{id}(id = ${post.id})}" th:method="delete">
+                <input type="submit" value="Delete" />
+            </form>
+        </li>
     </ul>
 
     </body>
