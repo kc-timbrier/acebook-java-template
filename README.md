@@ -3,6 +3,7 @@
 This is a java/springboot project to be developed on.  There's a video tour of the application [here](https://youtu.be/L1Zi9WOJ6xg) but you should read through these docs first.
 
 The application uses:
+
   - `maven` to build the project
   - `thymeleaf` for templating
   - `flyway` to manage `postgres` db migrations
@@ -20,7 +21,7 @@ Below, you'll find specific learning objectives for each tool.
 - Fork and clone this repository to your machine
 - Open the codebase in an IDE like InteliJ or VSCode
 - Create a new Postgres database called `acebook_springboot_development`
-  - [See here for more instructions on creating a Postgres database](./docs/create-postgres-database.md)
+    - [See here for more instructions on creating a Postgres database](./docs/create-postgres-database.md)
 - Make sure you have Maven installed `brew install maven`
 - Build the app and start the server, using the Maven command `mvn spring-boot:run`
 > The database migrations will run automatically at this point
@@ -29,13 +30,14 @@ Below, you'll find specific learning objectives for each tool.
 ## Running the tests
 
 - Make sure chromedriver is installed
-  - [See here for more instructions on installing chromedriver](./docs/install-chromedriver.md)
+    - [See here for more instructions on installing chromedriver](./docs/install-chromedriver.md)
 - Start the server in a terminal session `mvn spring-boot:run`
 - Start a new terminal session, navigate to the Acebook directory and then do `mvn test` to run both feature tests and unit tests
 
 ## Existing features
 
 This app already has a few basic features
+
 * A user can sign up at `/users/new`
 * A signed up user can sign in at `/login`
 * A signed in user can create posts at `/posts`
