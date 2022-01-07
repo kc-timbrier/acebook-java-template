@@ -21,7 +21,7 @@
     </form>
 
     <ul th:each="post: ${posts}">
-        <li th:text="${post.user.username + ' - ' + post.content}" />
+        <li th:text="${post.postTime + ' - ' + post.user.username + ' - ' + post.content}" />
     </ul>
 
     </body>

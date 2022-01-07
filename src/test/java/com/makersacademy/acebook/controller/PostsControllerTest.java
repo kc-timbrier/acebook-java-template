@@ -4,6 +4,7 @@ import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.UserRepository;
+import com.makersacademy.acebook.utils.NowProvider;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,6 +35,9 @@ class PostsControllerTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private NowProvider nowProvider;
 
     @Nested
     class GetPostsPageTest {
@@ -71,18 +76,20 @@ class PostsControllerTest {
     @Nested
     class CreatePostTest {
 
+        @Mock
+        private Principal principal;
+
         @Test
         public void savesProvidedPost() {
             Post post = new Post();
 
-            testSubject.create(post, mock(Principal.class));
+            testSubject.create(post, principal);
 
             verify(postRepository).save(same(post));
         }
 
         @Test
         public void addsCurrentUserToSavedPost() {
-            Principal principal = mock(Principal.class);
             when(principal.getName()).thenReturn("some-name");
 
             User user = new User();
@@ -96,8 +103,20 @@ class PostsControllerTest {
         }
 
         @Test
+        public void addsCurrentTimeToSavedPost() {
+            LocalDateTime currentTime = LocalDateTime.of(2022, 1, 1, 12, 0);
+            when(nowProvider.now()).thenReturn(currentTime);
+
+            testSubject.create(new Post(), principal);
+
+            ArgumentCaptor<Post> savedPost = ArgumentCaptor.forClass(Post.class);
+            verify(postRepository).save(savedPost.capture());
+            assertThat(savedPost.getValue().getPostTime()).isEqualTo(currentTime);
+        }
+
+        @Test
         public void redirectsToPostsPageOnSuccess() {
-            RedirectView result = testSubject.create(new Post(), mock(Principal.class));
+            RedirectView result = testSubject.create(new Post(), principal);
 
             assertThat(result.getUrl()).isEqualTo("/posts");
         }
