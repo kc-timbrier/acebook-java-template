@@ -10,9 +10,10 @@
 
     <h1>Posts</h1>
 
-    <div sec:authorize="isAuthenticated()">
+    <span sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
-    </div>
+        <button onclick="location.href='/logout'">Logout</button>
+    </span>
 
     <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
         <p>Content: <input type="text" th:field="*{content}" /></p>
