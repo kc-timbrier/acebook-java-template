@@ -40,7 +40,7 @@ public class HomeController {
 		model.addAttribute("posts", getPostsVisibleTo(currentUser));
 		model.addAttribute("post", new Post());
 		model.addAttribute("friendRequest", new FriendRequest());
-		model.addAttribute("friends", getFriendsOf(currentUser));
+		model.addAttribute("friends", currentUser.getFriends());
 
 		return "feed/index";
 	}
@@ -57,11 +57,5 @@ public class HomeController {
 		visibleUserIds.addAll(friendIds);
 
 		return postRepository.findByUserIdIn(visibleUserIds);
-	}
-
-	private List<User> getFriendsOf(User currentUser) {
-		return Optional.ofNullable(currentUser)
-				.map(User::getFriends)
-				.orElse(Collections.emptyList());
 	}
 }
