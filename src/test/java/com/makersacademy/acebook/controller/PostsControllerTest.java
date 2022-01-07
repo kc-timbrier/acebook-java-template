@@ -12,13 +12,10 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.same;
@@ -38,40 +35,6 @@ class PostsControllerTest {
 
     @Mock
     private NowProvider nowProvider;
-
-    @Nested
-    class GetPostsPageTest {
-
-        @Test
-        public void createsAPostObjectToBePopulated() {
-            Model model = new ExtendedModelMap();
-
-            testSubject.getPostsPage(model);
-
-            assertThat(model.getAttribute("post")).isNotNull();
-            assertThat(model.getAttribute("post")).isInstanceOf(Post.class);
-        }
-
-        @Test
-        public void populatesPostsObjectFromThePostRepository() {
-            List<Post> existingPosts = List.of(new Post(), new Post());
-            when(postRepository.findAll()).thenReturn(existingPosts);
-
-            Model model = new ExtendedModelMap();
-
-            testSubject.getPostsPage(model);
-
-            assertThat(model.getAttribute("posts")).isNotNull();
-            assertThat(model.getAttribute("posts")).isSameAs(existingPosts);
-        }
-
-        @Test
-        public void returnsTheCorrectTemplateUrl() {
-            String result = testSubject.getPostsPage(new ExtendedModelMap());
-
-            assertThat(result).isEqualTo("posts/index");
-        }
-    }
 
     @Nested
     class CreatePostTest {
@@ -115,10 +78,10 @@ class PostsControllerTest {
         }
 
         @Test
-        public void redirectsToPostsPageOnSuccess() {
+        public void redirectsToFeedPageOnSuccess() {
             RedirectView result = testSubject.create(new Post(), principal);
 
-            assertThat(result.getUrl()).isEqualTo("/posts");
+            assertThat(result.getUrl()).isEqualTo("/feed");
         }
     }
 

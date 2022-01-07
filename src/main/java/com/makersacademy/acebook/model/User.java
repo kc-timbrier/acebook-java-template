@@ -1,12 +1,11 @@
 package com.makersacademy.acebook.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Boolean.TRUE;
 
@@ -20,6 +19,14 @@ public class User {
     private String username;
     private String password;
     private boolean enabled;
+
+    @ManyToMany
+    @JoinTable(
+            name = "FRIENDS",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id", referencedColumnName = "id")
+    )
+    private List<User> friends = new ArrayList<>();
 
     public User() {
         this.enabled = TRUE;

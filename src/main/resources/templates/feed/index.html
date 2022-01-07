@@ -8,17 +8,29 @@
     </head>
     <body>
 
-    <h1>Posts</h1>
+    <h1>Feed</h1>
 
     <span sec:authorize="isAuthenticated()">
         Signed in as <span sec:authentication="name"></span>
         <button onclick="location.href='/logout'">Logout</button>
     </span>
 
-    <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
-        <p>Content: <input type="text" th:field="*{content}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <h2>Friends</h2>
+    <form action="#" th:action="@{/friends}" th:object="${friendRequest}" method="post">
+        <input type="text" th:field="*{username}" />
+        <input type="submit" value="Add Friend" />
     </form>
+
+    <ul th:each="friend: ${friends}">
+        <li th:text="${friend.username}" />
+    </ul>
+
+    <h2>Posts</h2>
+    <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
+        Content: <input type="text" th:field="*{content}" />
+        <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+    </form>
+
 
     <ul th:each="post: ${posts}">
         <li th:text="${post.postTime + ' - ' + post.user.username + ' - ' + post.content}" />
